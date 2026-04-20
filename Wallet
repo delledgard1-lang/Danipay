@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DaniPay Wallet</title>
+  <style>
+    body { font-family: Arial; padding:20px; background:#f5f5f5; }
+    .box { background:white; padding:15px; margin-bottom:10px; border-radius:10px; }
+  </style>
+</head>
+<body>
+
+<h2>DaniPay Wallet</h2>
+
+<div class="box">
+  <h3>Balance</h3>
+  <p id="balance"></p>
+</div>
+
+<div class="box">
+  <h3>Card</h3>
+  <p id="card"></p>
+</div>
+
+<div class="box">
+  <h3>Transactions</h3>
+  <ul id="list"></ul>
+</div>
+
+<script>
+function getParam(param){
+  let url = new URL(window.location.href);
+  return url.searchParams.get(param);
+}
+
+let balance = getParam("b");
+let card = getParam("c");
+let transactions = getParam("t");
+
+document.getElementById("balance").textContent = "$" + balance;
+document.getElementById("card").textContent = card;
+
+if(transactions){
+  let list = transactions.split(",");
+  list.forEach(t => {
+    let li = document.createElement("li");
+    li.textContent = t;
+    document.getElementById("list").appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>
