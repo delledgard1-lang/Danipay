@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DaniPay Admin</title>
+</head>
+<body>
+
+<h2>DaniPay Admin</h2>
+
+<input type="number" id="balance" placeholder="Balance"><br><br>
+<input type="text" id="card" placeholder="**** **** **** 1234"><br><br>
+<input type="text" id="transactions" placeholder="Ex: Netflix-5,Spotify-3"><br><br>
+
+<button onclick="generate()">Generate Link</button>
+
+<p id="link"></p>
+
+<script>
+function generate(){
+  let balance = document.getElementById("balance").value;
+  let card = document.getElementById("card").value;
+  let transactions = document.getElementById("transactions").value;
+
+  let url = "client.html?b=" + balance + "&c=" + encodeURIComponent(card) + "&t=" + encodeURIComponent(transactions);
+
+  document.getElementById("link").innerHTML = "<a href='" + url + "' target='_blank'>" + url + "</a>";
+}
+</script>
+
+</body>
+</html>
